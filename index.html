@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information Form</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Comfortaa', sans-serif;
+            background-color: transparent;
+            color: #054607;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            width: 510px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        label {
+            font-size: 14px;
+            flex: 1;
+            text-align: left;
+            padding-right: 12px;
+        }
+        input[type="text"], input[type="tel"], input[type="date"], select {
+            flex: 2;
+            padding: 8px;
+            font-size: 14px;
+            color: #054607;
+            border: none;
+            border-bottom: 2px solid #498202;
+            background-color: transparent;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        input:focus {
+            border-bottom-color: #82A436;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form id="xenaUserInfoForm">
+            <div class="form-group">
+                <label for="xenaName">Name:</label>
+                <input type="text" id="xenaName" name="name">
+            </div>
+
+            <div class="form-group">
+                <label for="xenaGender">Gender:</label>
+                <select id="xenaGender" name="gender">
+                    <option value="">Select</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="xenaAddress">Address:</label>
+                <input type="text" id="xenaAddress" name="address">
+            </div>
+
+            <div class="form-group">
+                <label for="xenaDob">Date of Birth:</label>
+                <input type="date" id="xenaDob" name="dob">
+            </div>
+
+            <div class="form-group">
+                <label for="xenaAge">Age:</label>
+                <input type="text" id="xenaAge" name="age">
+            </div>
+
+            <div class="form-group">
+                <label for="xenaEthnicity">Ethnicity:</label>
+                <input type="text" id="xenaEthnicity" name="ethnicity">
+            </div>
+
+            <div class="form-group">
+                <label for="xenaReligion">Religion:</label>
+                <input type="text" id="xenaReligion" name="religion">
+            </div>
+
+            <div class="form-group">
+                <label for="xenaMother">Mother:</label>
+                <input type="text" id="xenaMother" name="mother">
+            </div>
+
+            <div class="form-group">
+                <label for="xenaFather">Father:</label>
+                <input type="text" id="xenaFather" name="father">
+            </div>
+
+            <div class="form-group">
+                <label for="xenaContact">Emergency Contact:</label>
+                <input type="tel" id="xenaContact" name="contact">
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Function to save input values to localStorage using "XENA" prefix
+        document.getElementById('xenaUserInfoForm').addEventListener('input', function(event) {
+            const input = event.target;
+            if (input.id) {
+                localStorage.setItem('XENA_' + input.id, input.value);
+            }
+        });
+
+        // Function to populate fields with stored values from localStorage using "XENA" prefix
+        window.onload = function() {
+            const formElements = document.querySelectorAll('#xenaUserInfoForm input, #xenaUserInfoForm select');
+            formElements.forEach(function(element) {
+                const storedValue = localStorage.getItem('XENA_' + element.id);
+                if (storedValue) {
+                    element.value = storedValue;
+                }
+            });
+        };
+    </script>
+</body>
+</html>
